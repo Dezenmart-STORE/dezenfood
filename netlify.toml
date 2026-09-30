@@ -1,0 +1,31 @@
+[build]
+  publish = "dist"
+  # Regenerate the product sitemap from live data on every deploy (SEO-02).
+  # generate-sitemap exits 0 even if the API is unreachable, so it can't fail a build.
+  command = "npm run generate-sitemap && npm run build"
+
+# Dynamic rendering for crawlers on product routes (SEO-01).
+[[edge_functions]]
+  function = "seo"
+  path = "/product"
+
+[[edge_functions]]
+  function = "seo"
+  path = "/product/*"
+
+[[edge_functions]]
+  function = "seo"
+  path = "/vendors/*"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "20"
+  NODE_OPTIONS = "--max-old-space-size=8192"
+  # Optimize build performance
+  CI = "true"
+  # Disable telemetry to save resources
+  NEXT_TELEMETRY_DISABLED = "1"

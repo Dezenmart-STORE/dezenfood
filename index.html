@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Basic Meta Tags -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta
+      name="description"
+      content="__BRAND_DESCRIPTION__"
+    />
+    <meta
+      name="keywords"
+      content="order food online, small chops, snacks, groceries, pepper soup, rice meals, food delivery Nigeria, escrow protected food orders, __BRAND_NAME__"
+    />
+    <meta name="author" content="__BRAND_NAME__" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+
+    <!-- Theme & App Meta -->
+    <meta name="theme-color" content="__BRAND_PRIMARY__" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="application-name" content="__BRAND_NAME__" />
+
+    <!-- Verification -->
+    <!-- <meta name="google-site-verification" content="your-google-verification-code" /> -->
+    <!-- <meta name="msvalidate.01" content="your-bing-verification-code" /> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <link rel="shortcut icon" href="/images/logo.svg" />
+
+    <!-- PWA Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="/icons/icon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="/icons/icon-512x512.png"
+    />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="__BRAND_NAME__" />
+
+    <!-- Android PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Windows Metro Tile -->
+    <meta name="msapplication-TileColor" content="__BRAND_PRIMARY__" />
+    <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="__BRAND_NAME__" />
+    <meta
+      property="og:title"
+      content="__BRAND_NAME__ - Order Food Online | Escrow-Protected Payments"
+    />
+    <meta
+      property="og:description"
+      content="__BRAND_DESCRIPTION__"
+    />
+    <meta
+      property="og:image"
+      content="__SITE_URL__/images/logo-full.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="__BRAND_NAME__ - __BRAND_TAGLINE__" />
+    <meta property="og:url" content="__SITE_URL__" />
+    <meta property="og:locale" content="en_NG" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="__BRAND_TWITTER__" />
+    <meta name="twitter:creator" content="__BRAND_TWITTER__" />
+    <meta
+      name="twitter:title"
+      content="__BRAND_NAME__ - Order Food Online | Escrow-Protected Payments"
+    />
+    <meta
+      name="twitter:description"
+      content="__BRAND_DESCRIPTION__"
+    />
+    <meta
+      name="twitter:image"
+      content="__SITE_URL__/images/logo-full.png"
+    />
+    <meta name="twitter:image:alt" content="__BRAND_NAME__ - __BRAND_TAGLINE__" />
+
+    <!-- Security -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+
+    <title>__BRAND_NAME__ - Order Food Online | Escrow-Protected Payments</title>
+
+    <!-- Structured Data: static fallback for non-JS crawlers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "__BRAND_NAME__",
+      "legalName": "__BRAND_LEGAL_NAME__",
+      "url": "__SITE_URL__",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "__SITE_URL__/images/logo.svg"
+      },
+      "foundingDate": "2024",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "email": "__SUPPORT_EMAIL__",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "__BRAND_TWITTER_URL__",
+        "__BRAND_LINKEDIN_URL__"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "__BRAND_NAME__",
+      "url": "__SITE_URL__",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "__SITE_URL__/product?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.coingecko.com" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="__SITE_URL__/" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Splash screen styles - loaded synchronously to prevent any white flash -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #212428;
+      }
+
+      /* ── Splash shell ──────────────────────────────────────────────────────── */
+      #splash-screen {
+        position: fixed;
+        inset: 0;
+        background: #212428;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        /* Fade-out transition triggered by JS adding .hidden */
+        transition: opacity 0.45s ease-out;
+      }
+
+      #splash-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* ── Content column ────────────────────────────────────────────────────── */
+      .sp-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        width: 100%;
+        max-width: 440px;
+        /* Safe margin so nothing clips near device edges */
+        box-sizing: border-box;
+      }
+
+      /* ── Logo ──────────────────────────────────────────────────────────────── */
+      /*
+        min(52vmin, 200px):
+          vmin = smaller of vw / vh - keeps logo proportional on any orientation.
+          52vmin on a 375×812 phone ≈ 195px (just under the cap).
+          Cap at 200px so it doesn't overpower larger screens.
+          Result: logo is always fully visible, never cropped, never too large.
+      */
+      .sp-logo {
+        width: min(52vmin, 200px);
+        height: min(52vmin, 200px);
+        display: block;
+        flex-shrink: 0;
+        opacity: 0;
+        transform: scale(0.72);
+        animation: spLogoIn 0.55s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+      }
+
+      @keyframes spLogoIn {
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      /* ── Logo draw-on ──────────────────────────────────────────────────────── */
+      /*
+        Each shape draws its outline, then fills - the same gesture the old React
+        Loadscreen played with framer-motion, rewritten in plain CSS so it runs
+        here, before any JavaScript. That is the whole point: the React version
+        could not start until a 1.8 MB bundle had downloaded, parsed and run,
+        which is exactly the window a splash exists to cover.
+
+        Timings are the original's, scaled from 4.5s to 1s and played ONCE
+        instead of looping. A loop only made sense while the splash was held for
+        a fixed 2s; now it leaves as soon as the app is ready, so a loop would be
+        cut mid-draw. Ending on the finished logo means any dismissal after the
+        first second lands on a complete mark.
+
+        Stroke length uses pathLength="1", which normalises every shape to a
+        length of 1 regardless of its real perimeter - so one keyframe works for
+        circles and polygons alike, with no hand-computed circumferences.
+      */
+      .sp-draw {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+      }
+
+      .sp-fill {
+        opacity: 0;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+        animation-fill-mode: forwards;
+      }
+
+      /* Shape 1+2: red circle and red triangle - draw 0-27%, fill by 40% */
+      .sp-d1 { animation-name: spDraw1; }
+      .sp-f1 { animation-name: spFill1; }
+      @keyframes spDraw1 {
+        0%   { stroke-dashoffset: 1; opacity: 1; }
+        27%  { stroke-dashoffset: 0; opacity: 1; }
+        40%  { stroke-dashoffset: 0; opacity: 0; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes spFill1 {
+        0%, 27% { opacity: 0; }
+        40%     { opacity: 1; }
+        100%    { opacity: 1; }
+      }
+
+      /* Shape 3+4: white circle and white triangle - draw 18-45%, fill by 58% */
+      .sp-d2 { animation-name: spDraw2; }
+      .sp-f2 { animation-name: spFill2; }
+      @keyframes spDraw2 {
+        0%, 18% { stroke-dashoffset: 1; opacity: 1; }
+        45%     { stroke-dashoffset: 0; opacity: 1; }
+        58%     { stroke-dashoffset: 0; opacity: 0; }
+        100%    { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes spFill2 {
+        0%, 45% { opacity: 0; }
+        58%     { opacity: 1; }
+        100%    { opacity: 1; }
+      }
+
+      /* Shape 5: small white circle - draw 53-63%, fill by 75% */
+      .sp-d3 { animation-name: spDraw3; }
+      .sp-f3 { animation-name: spFill3; }
+      @keyframes spDraw3 {
+        0%, 53% { stroke-dashoffset: 1; opacity: 1; }
+        63%     { stroke-dashoffset: 0; opacity: 1; }
+        75%     { stroke-dashoffset: 0; opacity: 0; }
+        100%    { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes spFill3 {
+        0%, 63% { opacity: 0; }
+        75%     { opacity: 1; }
+        100%    { opacity: 1; }
+      }
+
+      /* Shape 6: small red circle - draw 67-78%, fill by 88% */
+      .sp-d4 { animation-name: spDraw4; }
+      .sp-f4 { animation-name: spFill4; }
+      @keyframes spDraw4 {
+        0%, 67% { stroke-dashoffset: 1; opacity: 1; }
+        78%     { stroke-dashoffset: 0; opacity: 1; }
+        88%     { stroke-dashoffset: 0; opacity: 0; }
+        100%    { stroke-dashoffset: 0; opacity: 0; }
+      }
+      @keyframes spFill4 {
+        0%, 78% { opacity: 0; }
+        88%     { opacity: 1; }
+        100%    { opacity: 1; }
+      }
+
+      /* Someone who asked for less motion gets the finished logo, immediately. */
+      @media (prefers-reduced-motion: reduce) {
+        .sp-logo { animation: none; opacity: 1; transform: none; }
+        .sp-draw { animation: none; opacity: 0; }
+        .sp-fill { animation: none; opacity: 1; }
+        .sp-name, .sp-tagline, .sp-dots { animation: none; opacity: 1; transform: none; }
+        .sp-dots span { animation: none; }
+      }
+
+      /* ── Brand name ────────────────────────────────────────────────────────── */
+      .sp-name {
+        margin: 1.5rem 0 0;
+        color: #fff;
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(8px);
+        animation: spSlideUp 0.5s ease-out 0.55s forwards;
+      }
+
+      /* ── Tagline ───────────────────────────────────────────────────────────── */
+      .sp-tagline {
+        margin: 0.4rem 0 0;
+        color: rgba(255, 255, 255, 0.4);
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: clamp(0.65rem, 2.2vw, 0.8rem);
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(8px);
+        animation: spSlideUp 0.5s ease-out 0.75s forwards;
+      }
+
+      @keyframes spSlideUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ── Loading dots ──────────────────────────────────────────────────────── */
+      .sp-dots {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 2.75rem;
+        opacity: 0;
+        animation: spSlideUp 0.4s ease-out 1s forwards;
+      }
+
+      .sp-dots span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        animation: spDot 1.3s ease-in-out infinite;
+      }
+
+      .sp-dots span:nth-child(1) {
+        background: __BRAND_PRIMARY__;
+        animation-delay: 0s;
+      }
+
+      .sp-dots span:nth-child(2) {
+        background: rgba(255, 255, 255, 0.55);
+        animation-delay: 0.2s;
+      }
+
+      .sp-dots span:nth-child(3) {
+        background: __BRAND_PRIMARY__;
+        animation-delay: 0.4s;
+      }
+
+      @keyframes spDot {
+        0%, 75%, 100% { transform: scale(0.85); opacity: 0.4; }
+        38%           { transform: scale(1.35); opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Splash screen - visible before React hydrates. Dismissed via app-ready event. -->
+    <div id="splash-screen" role="status" aria-label="Loading __BRAND_NAME__">
+      <div class="sp-inner">
+
+        <!--
+          Logo SVG - identical shapes to /public/images/logo.svg.
+          No background rect needed here: the #splash-screen provides #212428.
+          Unique clip-path IDs (sp-*) avoid any conflict with other SVGs on the page.
+        -->
+        <svg
+          class="sp-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 400 400"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <clipPath id="sp-tl">
+              <rect x="0" y="0" width="207" height="207" />
+            </clipPath>
+            <clipPath id="sp-br">
+              <rect x="203" y="203" width="207" height="207" />
+            </clipPath>
+          </defs>
+
+          <!-- Red teardrop: clipped circle + white pointer tail -->
+          <g clip-path="url(#sp-tl)">
+            <circle class="sp-fill sp-f1" cx="135" cy="135" r="75" fill="__BRAND_PRIMARY__" />
+            <circle class="sp-draw sp-d1" cx="135" cy="135" r="75" pathLength="1"
+                    fill="none" stroke="__BRAND_PRIMARY__" stroke-width="3" />
+          </g>
+          <polygon class="sp-fill sp-f1" points="205,205 260,202.9 202.9,253" fill="#FFFFFF" />
+          <polygon class="sp-draw sp-d2" points="205,205 260,202.9 202.9,253" pathLength="1"
+                   fill="none" stroke="#FFFFFF" stroke-width="3" />
+
+          <!-- White teardrop: clipped circle + red pointer tail -->
+          <g clip-path="url(#sp-br)">
+            <circle class="sp-fill sp-f2" cx="275" cy="275" r="75" fill="#FFFFFF" />
+            <circle class="sp-draw sp-d2" cx="275" cy="275" r="75" pathLength="1"
+                    fill="none" stroke="#FFFFFF" stroke-width="3" />
+          </g>
+          <polygon class="sp-fill sp-f2" points="205,205 150,207.1 207.1,150" fill="__BRAND_PRIMARY__" />
+          <polygon class="sp-draw sp-d1" points="205,205 150,207.1 207.1,150" pathLength="1"
+                   fill="none" stroke="__BRAND_PRIMARY__" stroke-width="3" />
+
+          <!-- Accent circles -->
+          <circle class="sp-fill sp-f3" cx="270" cy="140" r="50" fill="#FFFFFF" />
+          <circle class="sp-draw sp-d3" cx="270" cy="140" r="50" pathLength="1"
+                  fill="none" stroke="#FFFFFF" stroke-width="3" />
+          <circle class="sp-fill sp-f4" cx="140" cy="270" r="50" fill="__BRAND_PRIMARY__" />
+          <circle class="sp-draw sp-d4" cx="140" cy="270" r="50" pathLength="1"
+                  fill="none" stroke="__BRAND_PRIMARY__" stroke-width="3" />
+        </svg>
+
+        <p class="sp-name">__BRAND_NAME_UPPER__</p>
+        <p class="sp-tagline">__BRAND_TAGLINE__</p>
+
+        <div class="sp-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="root" class="relative"></div>
+
+    <!--
+      Splash dismiss logic.
+      The splash stays until React fires window.dispatchEvent(new Event('app-ready')).
+
+      MIN_MS is 1 000 ms everywhere: exactly one pass of the logo draw-on, so the
+      splash never disappears mid-stroke. It used to be 2 000 ms in standalone and
+      1 000 ms in a browser tab - a floor the app was held behind even when React
+      was ready in 200 ms. The PWA now launches a full second sooner, and nothing
+      else waits on a fixed timer.
+
+      This is the ONLY full-screen loading state in the app. The React Loadscreen
+      that used to re-appear on route changes and while auth resolved is gone; a
+      lazy route now keeps the current page on screen instead of blacking it out.
+
+      Hard cap of 8 000 ms as a safety net if React never fires the event.
+    -->
+    <script>
+      (function () {
+        var splash = document.getElementById("splash-screen");
+        if (!splash) return;
+
+        var MIN_MS = 1000;
+        var MAX_MS = 8000;
+        var startTime = Date.now();
+        var dismissed = false;
+
+        function dismiss() {
+          if (dismissed) return;
+          dismissed = true;
+          var wait = Math.max(0, MIN_MS - (Date.now() - startTime));
+          setTimeout(function () {
+            splash.classList.add("hidden");
+            setTimeout(function () {
+              splash.remove();
+              document.body.style.overflow = "";
+            }, 450);
+          }, wait);
+        }
+
+        /* React signals the app is mounted and ready to display */
+        window.addEventListener("app-ready", dismiss, { once: true });
+
+        /* Hard timeout - dismiss even if React never fires */
+        setTimeout(dismiss, MAX_MS);
+      })();
+    </script>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

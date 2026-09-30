@@ -1,0 +1,56 @@
+import type { CreateDeliveryAddressParams } from "../../../utils/types";
+
+// Nigeria-first marketplace: default the country. States/LGAs are fetched from
+// the backend (GET /logistics/locations/*); FALLBACK_STATES is only used if that
+// request fails, so its spelling matches the backend ("FCT", not "FCT - Abuja").
+export const BLANK_ADDRESS: CreateDeliveryAddressParams = {
+  label: "",
+  fullName: "",
+  phone: "",
+  street: "",
+  lga: "",
+  state: "",
+  country: "Nigeria",
+  zipCode: "",
+  isDefault: false,
+};
+
+export const FALLBACK_STATES: string[] = [
+  "Abia",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Edo",
+  "Ekiti",
+  "Enugu",
+  "FCT",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara",
+];

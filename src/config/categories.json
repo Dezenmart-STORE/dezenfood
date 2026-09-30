@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Snacks",
+    "emoji": "🍿",
+    "blurb": "Chin chin, popcorn, plantain chips, biscuits",
+    "subcategories": [
+      "Chin Chin",
+      "Popcorn",
+      "Plantain Chips",
+      "Cookies & Biscuits",
+      "Nuts",
+      "Puff Puff"
+    ],
+    "color": "text-amber-400",
+    "bg": "bg-amber-500/15",
+    "ring": "ring-amber-500/50",
+    "hex": "#f59e0b"
+  },
+  {
+    "name": "Small Chops",
+    "emoji": "🥟",
+    "blurb": "Samosa, spring rolls, puff-puff, party platters",
+    "subcategories": [
+      "Party Platter",
+      "Samosa",
+      "Spring Rolls",
+      "Puff Puff",
+      "Meat Pie",
+      "Peppered Snail",
+      "Mini Sausage"
+    ],
+    "color": "text-orange-400",
+    "bg": "bg-orange-500/15",
+    "ring": "ring-orange-500/50",
+    "hex": "#f97316"
+  },
+  {
+    "name": "Groceries",
+    "emoji": "🛒",
+    "blurb": "Fresh produce, staples, provisions",
+    "subcategories": [
+      "Fresh Produce",
+      "Grains & Staples",
+      "Provisions",
+      "Meat & Fish",
+      "Oils & Spices",
+      "Dairy & Eggs"
+    ],
+    "color": "text-green-400",
+    "bg": "bg-green-500/15",
+    "ring": "ring-green-500/50",
+    "hex": "#22c55e"
+  },
+  {
+    "name": "Pepper Soup",
+    "emoji": "🍲",
+    "blurb": "Goat meat, catfish, chicken, assorted",
+    "subcategories": [
+      "Goat Meat",
+      "Catfish",
+      "Chicken",
+      "Assorted Meat",
+      "Cow Tail"
+    ],
+    "color": "text-red-400",
+    "bg": "bg-red-500/15",
+    "ring": "ring-red-500/50",
+    "hex": "#ef4444"
+  },
+  {
+    "name": "Rice & Rice Meals",
+    "emoji": "🍚",
+    "blurb": "Jollof, fried rice, coconut rice, rice & stew",
+    "subcategories": [
+      "Jollof Rice",
+      "Fried Rice",
+      "Coconut Rice",
+      "White Rice & Stew",
+      "Ofada Rice",
+      "Rice Party Pack"
+    ],
+    "color": "text-yellow-400",
+    "bg": "bg-yellow-500/15",
+    "ring": "ring-yellow-500/50",
+    "hex": "#eab308"
+  },
+  {
+    "name": "Drinks",
+    "emoji": "🥤",
+    "blurb": "Zobo, smoothies, fresh juice, water",
+    "subcategories": [
+      "Zobo",
+      "Smoothies",
+      "Fresh Juice",
+      "Kunu",
+      "Water"
+    ],
+    "color": "text-sky-400",
+    "bg": "bg-sky-500/15",
+    "ring": "ring-sky-500/50",
+    "hex": "#0ea5e9"
+  },
+  {
+    "name": "Bakery",
+    "emoji": "🥖",
+    "blurb": "Bread, cakes, pastries",
+    "subcategories": [
+      "Bread",
+      "Cakes",
+      "Pastries",
+      "Doughnuts",
+      "Cupcakes"
+    ],
+    "color": "text-rose-400",
+    "bg": "bg-rose-500/15",
+    "ring": "ring-rose-500/50",
+    "hex": "#f43f5e"
+  },
+  {
+    "name": "Other Food",
+    "emoji": "🍽️",
+    "blurb": "Anything edible that fits nowhere else",
+    "subcategories": [],
+    "color": "text-purple-400",
+    "bg": "bg-purple-500/15",
+    "ring": "ring-purple-500/50",
+    "hex": "#a855f7"
+  }
+]

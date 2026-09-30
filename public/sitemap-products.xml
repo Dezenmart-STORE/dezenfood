@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PRODUCT SITEMAP - DYNAMIC GENERATION REQUIRED
+
+  This file should be dynamically generated from your product database.
+
+  Implementation options:
+  1. Server-side generation during build/deployment
+  2. API endpoint that generates sitemap on-demand
+  3. Scheduled job that updates this file periodically
+
+  For now, this is a placeholder template. Replace with actual product URLs.
+
+  Example product URL format:
+  <url>
+    <loc>https://dezenmart.com/product/{product-id}</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Product URLs will be dynamically added here -->
+  <!-- Example:
+  <url>
+    <loc>https://dezenmart.com/product/example-product-id</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  -->
+</urlset>

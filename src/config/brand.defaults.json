@@ -1,0 +1,14 @@
+{
+  "name": "DezenFoods",
+  "shortName": "DezenFoods",
+  "legalName": "DezenMart Inc.",
+  "tagline": "Fresh food, protected by escrow",
+  "description": "Order snacks, small chops, groceries, pepper soup, rice meals and more from trusted vendors on DezenFoods. Your payment is held in escrow until your food arrives.",
+  "siteUrl": "https://foods.dezenmart.com",
+  "supportEmail": "support@dezenmart.com",
+  "twitterHandle": "@Dezenmart",
+  "twitterUrl": "https://x.com/Dezenmart",
+  "linkedinUrl": "https://www.linkedin.com/company/dezenmart",
+  "primary": "#f97316",
+  "background": "#212428"
+}

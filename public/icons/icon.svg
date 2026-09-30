@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Dark background so white logo elements are visible -->
+  <rect width="400" height="400" fill="#212428"/>
+
+  <defs>
+    <clipPath id="clip-top-left">
+      <rect x="0" y="0" width="207" height="207"/>
+    </clipPath>
+    <clipPath id="clip-bottom-right">
+      <rect x="203" y="203" width="207" height="207"/>
+    </clipPath>
+  </defs>
+
+  <!-- TOP-LEFT TEARDROP: red circle + white tail -->
+  <g id="teardrop-red">
+    <g clip-path="url(#clip-top-left)">
+      <circle cx="135" cy="135" r="75" fill="#F97316"/>
+    </g>
+    <polygon points="205,205 260,202.9 202.9,253" fill="#FFFFFF"/>
+  </g>
+
+  <!-- BOTTOM-RIGHT TEARDROP: white circle + red tail -->
+  <g id="teardrop-white">
+    <g clip-path="url(#clip-bottom-right)">
+      <circle cx="275" cy="275" r="75" fill="#FFFFFF"/>
+    </g>
+    <polygon points="205,205 150,207.1 207.1,150" fill="#F97316"/>
+  </g>
+
+  <!-- Small accent circles -->
+  <circle cx="270" cy="140" r="50" fill="#FFFFFF"/>
+  <circle cx="140" cy="270" r="50" fill="#F97316"/>
+</svg>

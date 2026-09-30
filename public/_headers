@@ -1,0 +1,14 @@
+# Netlify security headers. Applied to every response.
+# CSP is Report-Only for now: it logs violations to the browser console without
+# blocking anything, so wallet / OAuth / checkout flows can't break. Once we've
+# confirmed no legitimate requests are reported, switch the header name to
+# "Content-Security-Policy" to enforce it. (SEC-02)
+# NOTE: if VITE_ANALYTICS_ENDPOINT is set, add its origin to connect-src below.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests; form-action 'self' https://accounts.google.com; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://accounts.google.com https://www.googletagmanager.com https://www.google-analytics.com https://d309lcjd52k0i0.cloudfront.net; style-src 'self' 'unsafe-inline' https://accounts.google.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; worker-src 'self' blob:; manifest-src 'self'; frame-src 'self' https://app.dynamicauth.com https://*.dynamicauth.com https://accounts.google.com https://*.walletconnect.org https://verify.walletconnect.com https://*.quidax.io https://d309lcjd52k0i0.cloudfront.net https://studio.squidrouter.com https://*.squidrouter.com; connect-src 'self' https://app.dynamicauth.com https://*.dynamicauth.com https://*.dynamic-static-assets.com https://dezenmart-server.onrender.com https://*.onrender.com https://*.celo.org https://*.celo-testnet.org https://rpc.ankr.com https://*.blastapi.io https://*.blockscout.com https://*.celoscan.io https://api.coingecko.com https://ipapi.co https://*.infura.io https://*.thirdweb.com https://*.googleapis.com https://accounts.google.com https://res.cloudinary.com https://*.walletconnect.com https://*.walletconnect.org wss://*.walletconnect.com wss://*.walletconnect.org https://*.ingest.sentry.io https://*.sentry.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.quidax.io https://d309lcjd52k0i0.cloudfront.net
