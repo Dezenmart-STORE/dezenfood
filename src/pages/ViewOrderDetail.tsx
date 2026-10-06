@@ -15,6 +15,7 @@ import PaymentFlow from "../components/payment/PaymentFlow";
 
 import FiatPaymentFlow from "../components/payment/FiatPaymentFlow";
 import FiatOrderActions from "../components/trade/FiatOrderActions";
+import { needsRefundAccount } from "../utils/orderFlow";
 import PaymentMethodSelector, {
   type MethodOption,
   type PaymentMethod,
@@ -613,7 +614,7 @@ const ViewOrderDetail = () => {
         </div>
 
         {/* Post-payment actions (buyer only). Fiat/escrow-provider orders act through the backend */}
-        {!isSeller && isFiatRail && <FiatOrderActions order={order} status={status} />}
+        {!isSeller && (isFiatRail || needsRefundAccount(order)) && <FiatOrderActions order={order} status={status} />}
 
         {/* On-chain orders act through the contract - valid numeric on-chain purchaseId */}
         {!isSeller && !isFiatRail && order.purchaseId && /^\d+$/.test(order.purchaseId) && (

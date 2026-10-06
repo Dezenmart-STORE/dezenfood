@@ -1,5 +1,7 @@
 # DezenFoods — Backend Changes Required
 
+> **Status (2026-10-05):** most of this has been built, with a different payment design: Pandascrow **virtual-account bank transfer** with payout on buyer confirmation, instead of Korapay and Pandascrow escrow (§0, §6 and §31 below describe the original plan). See [BACKEND-GAP-ANALYSIS.md](BACKEND-GAP-ANALYSIS.md) for what exists and what is left.
+
 The DezenFoods frontend is a separate site that shares the DezenMart backend and login. This is everything the backend must add or change. Every endpoint below is **already called by the frontend** (see `src/store/api/*`); the request/response shapes here are the contract the UI was built against. The backend is the source of truth for prices, totals and payment state: **the browser never marks anything paid.**
 
 Priority: **P0** = launch blocker, **P1** = needed soon after, **P2** = improvement.

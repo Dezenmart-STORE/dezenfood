@@ -8,6 +8,8 @@ import {
 import type { Order } from "../../utils/types";
 import type { TradeState } from "./TradeStatus";
 import { getErrorMessage } from "../../utils/errors";
+import { canBuyerConfirm, needsRefundAccount } from "../../utils/orderFlow";
+import RefundAccountForm from "./RefundAccountForm";
 
 interface Props {
   order: Order;
@@ -40,11 +42,13 @@ export default function FiatOrderActions({ order, status }: Props) {
   const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
 
   const needsOtp = order.releaseOtpRequired ?? order.paymentRail === "pandascrow";
-  const canConfirm = status === "delivered";
+  const canConfirm = canBuyerConfirm(status, order.fulfilment);
   const canDispute = ["paid", "preparing", "ready", "out_for_delivery", "shipped", "delivered"].includes(status);
   const canCancel = status === "paid";
 
-  if (!canConfirm && !canDispute && !canCancel) return null;
+  const refundDue = needsRefundAccount(order);
+
+  if (!canConfirm && !canDispute && !canCancel && !refundDue) return null;
 
   const run = async (fn: () => Promise<unknown>, okText: string) => {
     setFeedback(null);
@@ -70,6 +74,8 @@ export default function FiatOrderActions({ order, status }: Props) {
           {feedback.text}
         </div>
       )}
+
+      {refundDue && <RefundAccountForm order={order} />}
 
       {canConfirm && (
         <div className="rounded-2xl border border-[#292B30] bg-[#212428] p-5">

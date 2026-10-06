@@ -10,6 +10,7 @@ import {
 } from "../store/api";
 import type { Order, OrderItem } from "../utils/types";
 import { formatNaira } from "../utils/food";
+import { vendorActionsFor, type VendorOrderAction } from "../utils/orderFlow";
 import { getErrorMessage } from "../utils/errors";
 import { useSEO } from "../hooks/useSEO";
 
@@ -33,17 +34,6 @@ const TABS: { id: Column; label: string }[] = [
   { id: "ready", label: "Ready / out" },
   { id: "done", label: "Done" },
 ];
-
-/** What the vendor can do next for an order in each column. */
-const ACTIONS: Record<Column, { action: "accept" | "reject" | "preparing" | "ready"; label: string; tone: "primary" | "danger" }[]> = {
-  new: [
-    { action: "preparing", label: "Accept & start preparing", tone: "primary" },
-    { action: "reject", label: "Decline", tone: "danger" },
-  ],
-  preparing: [{ action: "ready", label: "Mark ready", tone: "primary" }],
-  ready: [],
-  done: [],
-};
 
 export default function VendorDashboard() {
   useSEO({ title: "Vendor dashboard", description: "Manage your orders.", noindex: true });
@@ -123,7 +113,7 @@ export default function VendorDashboard() {
 
         <ul className="mt-4 space-y-3">
           {byColumn[tab].length === 0 && <li className="py-10 text-center text-sm text-gray-500">Nothing here right now.</li>}
-          {byColumn[tab].map((o) => <OrderCard key={o._id} order={o} column={tab} />)}
+          {byColumn[tab].map((o) => <OrderCard key={o._id} order={o} />)}
         </ul>
       </Container>
     </div>
@@ -139,13 +129,14 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-function OrderCard({ order, column }: { order: Order; column: Column }) {
+function OrderCard({ order }: { order: Order }) {
   const [advance, { isLoading }] = useAdvanceFoodOrderMutation();
   const [error, setError] = useState<string | null>(null);
   const [prep, setPrep] = useState("");
   const buyer = typeof order.buyer === "object" ? order.buyer?.name : "Customer";
 
-  const run = async (action: "accept" | "reject" | "preparing" | "ready") => {
+  const actions = vendorActionsFor(order);
+  const run = async (action: VendorOrderAction) => {
     setError(null);
     if (action === "reject" && !window.confirm("Decline this order? The buyer will be refunded.")) return;
     try {
@@ -180,7 +171,7 @@ function OrderCard({ order, column }: { order: Order; column: Column }) {
       {order.buyerNote && <p className="mt-2 rounded-lg bg-[#212428] p-2 text-xs text-amber-300">Buyer note: {order.buyerNote}</p>}
       <p className="mt-2 text-xs text-gray-500">{order.fulfilment === "pickup" ? "Pickup" : "Delivery"}</p>
 
-      {column === "new" && (
+      {order.status === "paid" && (
         <input
           inputMode="numeric"
           value={prep}
@@ -193,9 +184,9 @@ function OrderCard({ order, column }: { order: Order; column: Column }) {
 
       {error && <p className="mt-2 text-xs text-red-400" role="alert">{error}</p>}
 
-      {ACTIONS[column].length > 0 && (
+      {actions.length > 0 && (
         <div className="mt-3 flex gap-2">
-          {ACTIONS[column].map((a) => (
+          {actions.map((a) => (
             <button
               key={a.action}
               disabled={isLoading}

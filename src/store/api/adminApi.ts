@@ -10,6 +10,13 @@ const list = <T,>(res: unknown, key: string): T[] => {
   return Array.isArray(v) ? (v as T[]) : [];
 };
 
+/** { data: { [key]: T } } -> T, tolerating a bare object. */
+const one = <T,>(res: unknown, key: string): T => {
+  const r = res as Record<string, unknown>;
+  const d = (r?.data ?? r) as Record<string, unknown>;
+  return (d?.[key] ?? d) as T;
+};
+
 export type DisputeResolution = 'release_to_vendor' | 'refund_buyer';
 
 export const adminApi = baseApi.injectEndpoints({
@@ -26,6 +33,7 @@ export const adminApi = baseApi.injectEndpoints({
         headers: { 'Content-Type': 'application/json' },
         body,
       }),
+      transformResponse: (res: unknown) => one<VendorProfile>(res, 'vendor'),
       invalidatesTags: [{ type: 'Admin', id: 'VENDORS' }],
     }),
 
@@ -41,6 +49,7 @@ export const adminApi = baseApi.injectEndpoints({
         headers: { 'Content-Type': 'application/json' },
         body,
       }),
+      transformResponse: (res: unknown) => one<Order>(res, 'order'),
       invalidatesTags: [{ type: 'Admin', id: 'DISPUTES' }, { type: 'Orders', id: 'LIST' }],
     }),
 

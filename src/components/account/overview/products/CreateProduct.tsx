@@ -358,9 +358,9 @@ const CreateProduct: React.FC<CreateProductProps> = ({ onProductCreated }) => {
       if (form.shelfLifeHours) formData.append("shelfLifeHours", form.shelfLifeHours);
       formData.append("fulfilment", JSON.stringify(fulfilment));
 
-      // Rails: fiat (Korapay / Pandascrow) is always offered when enabled.
+      // Rails: bank transfer (Pandascrow) is the live fiat rail.
       const rails: string[] = [];
-      if (FEATURES.fiat) rails.push("korapay", "pandascrow");
+      if (FEATURES.fiat) rails.push("pandascrow");
       if (acceptCrypto) rails.push("crypto");
       formData.append("acceptedPayments", JSON.stringify(rails));
 

@@ -188,6 +188,10 @@ export interface Order {
   prepTimeMinutes?: number;
   /** Fiat escrow release needs the buyer to enter an OTP sent by the provider. */
   releaseOtpRequired?: boolean;
+  /** Set when money is owed back to the buyer. `awaiting_account` = we need their bank details. */
+  refund?: { status: "awaiting_account" | "processing" | "sent" | "failed"; amount: number };
+  /** The vendor behind a food order (pickup address is only sent once it is being prepared). */
+  vendor?: { _id: string; businessName: string; logo?: string; address?: string; phone?: string };
   logisticsStatus?: string;
   /** Full logistics provider profile embedded on the order. */
   logisticsProvider?: {

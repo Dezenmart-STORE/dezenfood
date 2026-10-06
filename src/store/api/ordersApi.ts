@@ -1,6 +1,13 @@
 import { baseApi } from './baseApi';
 import { unwrapList } from './unwrap';
 import type { Order, OrderStatus, CreateOrderParams, CreateFoodOrderParams } from '../../utils/types';
+import type { VendorOrderAction } from '../../utils/orderFlow';
+
+/** { data: { order } } -> order (also tolerates { order } or a bare order). */
+const unwrapOrder = (res: unknown): Order => {
+  const r = res as { data?: { order?: Order }; order?: Order };
+  return (r?.data?.order ?? r?.order ?? r) as Order;
+};
 
 const toOrders = (response: unknown): Order[] =>
   unwrapList<Order>(response).filter((order) => order && order.product !== null);
@@ -83,7 +90,7 @@ export const ordersApi = baseApi.injectEndpoints({
     // which transition; the browser only asks.
     advanceFoodOrder: builder.mutation<
       Order,
-      { orderId: string; action: 'accept' | 'reject' | 'preparing' | 'ready'; reason?: string; prepTimeMinutes?: number }
+      { orderId: string; action: VendorOrderAction; reason?: string; prepTimeMinutes?: number }
     >({
       query: ({ orderId, ...body }) => ({
         url: `/orders/${orderId}/vendor-action`,
@@ -91,6 +98,7 @@ export const ordersApi = baseApi.injectEndpoints({
         headers: { 'Content-Type': 'application/json' },
         body,
       }),
+      transformResponse: unwrapOrder,
       invalidatesTags: (_r, _e, { orderId }) => [
         { type: 'Order', id: orderId },
         { type: 'Orders', id: 'SELLER' },
@@ -107,6 +115,7 @@ export const ordersApi = baseApi.injectEndpoints({
         headers: { 'Content-Type': 'application/json' },
         body: otp ? { otp } : {},
       }),
+      transformResponse: unwrapOrder,
       invalidatesTags: (_r, _e, { orderId }) => [
         { type: 'Order', id: orderId },
         { type: 'Orders', id: 'BUYER' },
@@ -122,6 +131,24 @@ export const ordersApi = baseApi.injectEndpoints({
         headers: { 'Content-Type': 'application/json' },
         body: reason ? { reason } : {},
       }),
+      transformResponse: unwrapOrder,
+      invalidatesTags: (_r, _e, { orderId }) => [
+        { type: 'Order', id: orderId },
+        { type: 'Orders', id: 'BUYER' },
+        { type: 'Orders', id: 'LIST' },
+      ],
+    }),
+
+    // Where to send a refund (rejected / cancelled / disputed orders). The
+    // backend verifies the account and pays it out; it never trusts a name.
+    submitRefundAccount: builder.mutation<Order, { orderId: string; bankCode: string; accountNumber: string }>({
+      query: ({ orderId, ...body }) => ({
+        url: `/orders/${orderId}/refund-account`,
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      }),
+      transformResponse: unwrapOrder,
       invalidatesTags: (_r, _e, { orderId }) => [
         { type: 'Order', id: orderId },
         { type: 'Orders', id: 'BUYER' },
@@ -147,6 +174,7 @@ export const ordersApi = baseApi.injectEndpoints({
         headers: { 'Content-Type': 'application/json' },
         body: details,
       }),
+      transformResponse: unwrapOrder,
       invalidatesTags: (result, error, { orderId }) => [
         { type: 'Order', id: orderId },
         { type: 'Orders', id: 'LIST' },
@@ -162,6 +190,7 @@ export const ordersApi = baseApi.injectEndpoints({
         method: 'POST',
         body: screenshotUrl ? { reason, screenshotUrl } : { reason },
       }),
+      transformResponse: unwrapOrder,
       invalidatesTags: (result, error, { orderId }) => [
         { type: 'Order', id: orderId },
         { type: 'Orders', id: 'LIST' },
@@ -180,6 +209,7 @@ export const {
   useConfirmFiatDeliveryMutation,
   useResendReleaseOtpMutation,
   useCancelOrderMutation,
+  useSubmitRefundAccountMutation,
   useUpdateOrderStatusMutation,
   useRaiseDisputeMutation,
 } = ordersApi;

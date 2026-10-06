@@ -21,9 +21,16 @@ npm run build
 
 ## Payments
 
-The buyer chooses the rail at checkout: card/bank (Korapay), escrow (Pandascrow), or crypto wallet. **The browser never talks to Korapay or Pandascrow**; the backend creates the payment, verifies it and receives webhooks. An order becomes paid only when the backend says so. See [docs/BACKEND-CHANGES.md](docs/BACKEND-CHANGES.md) for the full contract and the backend work list.
+Buyers pay by **bank transfer** into a one-time account number generated per order (Pandascrow virtual account). **The browser never talks to Pandascrow**; the backend creates the account, receives the signed webhook, and marks the order paid. Funds sit in the platform wallet until the buyer confirms receipt, then the backend pays the vendor's bank account. Refunds go to a bank account the buyer provides. Korapay and crypto are not used for food orders. See [docs/BACKEND-GAP-ANALYSIS.md](docs/BACKEND-GAP-ANALYSIS.md) for the current backend status and go-live checklist, and [docs/BACKEND-CHANGES.md](docs/BACKEND-CHANGES.md) for the original contract.
 
-Feature flags: `VITE_FIAT_ENABLED`, `VITE_CRYPTO_ENABLED` (`off` hides all wallet UI).
+Feature flags: `VITE_FIAT_ENABLED`, `VITE_CRYPTO_ENABLED` (`off` hides all wallet UI; keep it off for DezenFoods).
+
+## Tests
+
+```bash
+npm run test:run        # unit + component tests
+npm run test:e2e:full   # real backend (harness) + the app's actual API layer; needs the backend checkout, see src/__tests__/e2e/README.md
+```
 
 ## Layout
 

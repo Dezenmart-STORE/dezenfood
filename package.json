@@ -21,7 +21,9 @@
     "generate-sitemap:ts": "tsx scripts/generate-product-sitemap.ts",
     "deploy:staging": "npm run build && echo 'Deploy to staging'",
     "deploy:prod": "npm run test:run && npm run generate-sitemap && npm run build && echo 'Deploy to production'",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "test:e2e": "VITE_API_URL=$(node -e \"console.log(require(process.env.E2E_FILE).api)\") vitest run --config vitest.e2e.config.ts",
+    "test:e2e:full": "bash scripts/e2e.sh"
   },
   "dependencies": {
     "@divvi/referral-sdk": "^2.3.0",
