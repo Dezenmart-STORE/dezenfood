@@ -33,7 +33,6 @@ function brandHtml(env: Record<string, string>): Plugin {
   const b = brandTokens(env);
   const map: Record<string, string> = {
     __BRAND_NAME__: b.name,
-    __BRAND_NAME_UPPER__: b.name.toUpperCase(),
     __BRAND_TAGLINE__: b.tagline,
     __BRAND_DESCRIPTION__: b.description,
     __SITE_URL__: b.siteUrl,
@@ -74,7 +73,7 @@ export default defineConfig(({ mode }) => {
       srcDir: "src",
       filename: "sw.ts",
       registerType: "autoUpdate",
-      includeAssets: ["robots.txt", "icons/*.png", "images/logo.svg", "images/logo.png"],
+      includeAssets: ["robots.txt", "icons/*.png", "images/logo.png"],
       manifest: {
         name: `${brand.name} - ${brand.tagline}`,
         short_name: brand.name,

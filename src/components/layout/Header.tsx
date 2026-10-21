@@ -10,7 +10,7 @@ import { HiOutlineBell, HiOutlineShoppingBag } from "react-icons/hi";
 import { useAppSelector } from "../../hooks/redux";
 import { selectCartCount } from "../../store/slices/cartSlice";
 import { BiLogIn, BiWallet } from "react-icons/bi";
-import { LogoSVG } from "../../pages";
+import { Logo } from "../../pages";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../common/Container";
@@ -224,16 +224,11 @@ const Header = () => {
           className="flex items-center group transition-transform hover:scale-105"
           aria-label={`${BRAND.name} Home`}
         >
-          <div className="w-8 h-8 md:w-9 md:h-9 relative overflow-hidden flex-shrink-0">
-            <img
-              src={LogoSVG}
-              className="w-full h-full transition-transform group-hover:scale-110 object-contain"
-              alt={`${BRAND.name} logo`}
-            />
-          </div>
-          <span className="ml-2 text-white font-medium hidden lg:inline transition-opacity group-hover:opacity-90">
-            {BRAND.name}
-          </span>
+          <img
+            src={Logo}
+            className="h-9 md:h-10 w-auto flex-shrink-0 object-contain"
+            alt={`${BRAND.name} logo`}
+          />
         </Link>
 
         {/* Desktop Navigation */}

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { LiaAngleLeftSolid } from 'react-icons/lia';
 import { RiTwitterXLine, RiLinkedinBoxLine, RiTelegramLine, RiTiktokLine, RiExternalLinkLine } from 'react-icons/ri';
 import { HiOutlineGlobe, HiOutlineMail } from 'react-icons/hi';
-const logo = '/images/logo.svg';
+const logo = '/images/logo.png';
 
 const APP_VERSION = '1.0.0';
 
@@ -61,7 +61,7 @@ const About = ({ onBack }: { onBack: () => void }) => (
 
     {/* Identity card */}
     <div className="bg-[#292B30] rounded-2xl p-6 mb-5 flex flex-col items-center text-center">
-      <img src={logo} alt={BRAND.name} className="w-16 h-16 rounded-2xl mb-3" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+      <img src={logo} alt={BRAND.name} className="w-40 h-auto mb-3" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
       <h3 className="text-base font-bold text-white">{BRAND.name}</h3>
       <p className="text-xs text-gray-500 mt-0.5">Version {APP_VERSION}</p>
       <p className="text-sm text-gray-400 mt-3 leading-relaxed max-w-xs">

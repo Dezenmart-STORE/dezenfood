@@ -17,7 +17,7 @@ npm run build
 - Name, tagline, description, URLs, support email, socials: `src/config/brand.defaults.json` or `VITE_BRAND_*` / `VITE_SITE_URL` env vars. Used by the app (`src/config/brand.ts`), `index.html` (via `__BRAND_*__` tokens filled by `vite.config.ts`), the PWA manifest and the sitemap/robots script.
 - Colours: `--brand` / `--brand-hover` in `src/index.css` (Tailwind `bg-brand`, `text-brand`). Keep `brand.defaults.json` `primary` in sync.
 - Categories: `src/config/categories.json` (one entry per segment; the app, vendor form and sitemap all read it).
-- Logos: replace `public/images/logo.svg`, `logo-full.png` (1200×630 share image), `logo.png`, and `public/icons/icon.svg`, then `npm run generate-icons`. The files currently in the repo are the DezenMart mark tinted orange as a placeholder.
+- Logos: replace `public/images/logo.png` (white wordmark, transparent), `logoBlack.png` (dark wordmark for light backgrounds), `logo-full.png` (1200×630 share image) and `public/icons/icon.svg` (square app icon source), then `npm run generate-icons`. The splash screen in `index.html` and the favicon use these same files.
 
 ## Payments
 

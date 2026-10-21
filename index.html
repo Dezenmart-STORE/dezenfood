@@ -32,8 +32,8 @@
     <!-- <meta name="msvalidate.01" content="your-bing-verification-code" /> -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
-    <link rel="shortcut icon" href="/images/logo.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/icon-96x96.png" />
+    <link rel="shortcut icon" href="/icons/icon-96x96.png" />
 
     <!-- PWA Icons -->
     <link
@@ -121,7 +121,7 @@
       "url": "__SITE_URL__",
       "logo": {
         "@type": "ImageObject",
-        "url": "__SITE_URL__/images/logo.svg"
+        "url": "__SITE_URL__/images/logo.png"
       },
       "foundingDate": "2024",
       "contactPoint": {
@@ -209,15 +209,15 @@
 
       /* ── Logo ──────────────────────────────────────────────────────────────── */
       /*
-        min(52vmin, 200px):
+        min(72vmin, 280px):
           vmin = smaller of vw / vh - keeps logo proportional on any orientation.
-          52vmin on a 375×812 phone ≈ 195px (just under the cap).
-          Cap at 200px so it doesn't overpower larger screens.
-          Result: logo is always fully visible, never cropped, never too large.
+          72vmin on a 375×812 phone ≈ 270px (just under the cap).
+          Cap at 280px so it doesn't overpower larger screens.
+          Height follows the wordmark's ~2:1 aspect ratio.
       */
       .sp-logo {
-        width: min(52vmin, 200px);
-        height: min(52vmin, 200px);
+        width: min(72vmin, 280px);
+        height: auto;
         display: block;
         flex-shrink: 0;
         opacity: 0;
@@ -229,125 +229,16 @@
         to { opacity: 1; transform: scale(1); }
       }
 
-      /* ── Logo draw-on ──────────────────────────────────────────────────────── */
-      /*
-        Each shape draws its outline, then fills - the same gesture the old React
-        Loadscreen played with framer-motion, rewritten in plain CSS so it runs
-        here, before any JavaScript. That is the whole point: the React version
-        could not start until a 1.8 MB bundle had downloaded, parsed and run,
-        which is exactly the window a splash exists to cover.
-
-        Timings are the original's, scaled from 4.5s to 1s and played ONCE
-        instead of looping. A loop only made sense while the splash was held for
-        a fixed 2s; now it leaves as soon as the app is ready, so a loop would be
-        cut mid-draw. Ending on the finished logo means any dismissal after the
-        first second lands on a complete mark.
-
-        Stroke length uses pathLength="1", which normalises every shape to a
-        length of 1 regardless of its real perimeter - so one keyframe works for
-        circles and polygons alike, with no hand-computed circumferences.
-      */
-      .sp-draw {
-        stroke-dasharray: 1;
-        stroke-dashoffset: 1;
-        animation-duration: 1s;
-        animation-timing-function: ease-out;
-        animation-fill-mode: forwards;
-      }
-
-      .sp-fill {
-        opacity: 0;
-        animation-duration: 1s;
-        animation-timing-function: ease-in;
-        animation-fill-mode: forwards;
-      }
-
-      /* Shape 1+2: red circle and red triangle - draw 0-27%, fill by 40% */
-      .sp-d1 { animation-name: spDraw1; }
-      .sp-f1 { animation-name: spFill1; }
-      @keyframes spDraw1 {
-        0%   { stroke-dashoffset: 1; opacity: 1; }
-        27%  { stroke-dashoffset: 0; opacity: 1; }
-        40%  { stroke-dashoffset: 0; opacity: 0; }
-        100% { stroke-dashoffset: 0; opacity: 0; }
-      }
-      @keyframes spFill1 {
-        0%, 27% { opacity: 0; }
-        40%     { opacity: 1; }
-        100%    { opacity: 1; }
-      }
-
-      /* Shape 3+4: white circle and white triangle - draw 18-45%, fill by 58% */
-      .sp-d2 { animation-name: spDraw2; }
-      .sp-f2 { animation-name: spFill2; }
-      @keyframes spDraw2 {
-        0%, 18% { stroke-dashoffset: 1; opacity: 1; }
-        45%     { stroke-dashoffset: 0; opacity: 1; }
-        58%     { stroke-dashoffset: 0; opacity: 0; }
-        100%    { stroke-dashoffset: 0; opacity: 0; }
-      }
-      @keyframes spFill2 {
-        0%, 45% { opacity: 0; }
-        58%     { opacity: 1; }
-        100%    { opacity: 1; }
-      }
-
-      /* Shape 5: small white circle - draw 53-63%, fill by 75% */
-      .sp-d3 { animation-name: spDraw3; }
-      .sp-f3 { animation-name: spFill3; }
-      @keyframes spDraw3 {
-        0%, 53% { stroke-dashoffset: 1; opacity: 1; }
-        63%     { stroke-dashoffset: 0; opacity: 1; }
-        75%     { stroke-dashoffset: 0; opacity: 0; }
-        100%    { stroke-dashoffset: 0; opacity: 0; }
-      }
-      @keyframes spFill3 {
-        0%, 63% { opacity: 0; }
-        75%     { opacity: 1; }
-        100%    { opacity: 1; }
-      }
-
-      /* Shape 6: small red circle - draw 67-78%, fill by 88% */
-      .sp-d4 { animation-name: spDraw4; }
-      .sp-f4 { animation-name: spFill4; }
-      @keyframes spDraw4 {
-        0%, 67% { stroke-dashoffset: 1; opacity: 1; }
-        78%     { stroke-dashoffset: 0; opacity: 1; }
-        88%     { stroke-dashoffset: 0; opacity: 0; }
-        100%    { stroke-dashoffset: 0; opacity: 0; }
-      }
-      @keyframes spFill4 {
-        0%, 78% { opacity: 0; }
-        88%     { opacity: 1; }
-        100%    { opacity: 1; }
-      }
-
       /* Someone who asked for less motion gets the finished logo, immediately. */
       @media (prefers-reduced-motion: reduce) {
         .sp-logo { animation: none; opacity: 1; transform: none; }
-        .sp-draw { animation: none; opacity: 0; }
-        .sp-fill { animation: none; opacity: 1; }
-        .sp-name, .sp-tagline, .sp-dots { animation: none; opacity: 1; transform: none; }
+        .sp-tagline, .sp-dots { animation: none; opacity: 1; transform: none; }
         .sp-dots span { animation: none; }
-      }
-
-      /* ── Brand name ────────────────────────────────────────────────────────── */
-      .sp-name {
-        margin: 1.5rem 0 0;
-        color: #fff;
-        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        font-size: clamp(1.1rem, 4vw, 1.5rem);
-        font-weight: 700;
-        letter-spacing: 0.2em;
-        text-align: center;
-        opacity: 0;
-        transform: translateY(8px);
-        animation: spSlideUp 0.5s ease-out 0.55s forwards;
       }
 
       /* ── Tagline ───────────────────────────────────────────────────────────── */
       .sp-tagline {
-        margin: 0.4rem 0 0;
+        margin: 1.25rem 0 0;
         color: rgba(255, 255, 255, 0.4);
         font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         font-size: clamp(0.65rem, 2.2vw, 0.8rem);
@@ -356,7 +247,7 @@
         text-align: center;
         opacity: 0;
         transform: translateY(8px);
-        animation: spSlideUp 0.5s ease-out 0.75s forwards;
+        animation: spSlideUp 0.5s ease-out 0.55s forwards;
       }
 
       @keyframes spSlideUp {
@@ -406,57 +297,14 @@
     <div id="splash-screen" role="status" aria-label="Loading __BRAND_NAME__">
       <div class="sp-inner">
 
-        <!--
-          Logo SVG - identical shapes to /public/images/logo.svg.
-          No background rect needed here: the #splash-screen provides #212428.
-          Unique clip-path IDs (sp-*) avoid any conflict with other SVGs on the page.
-        -->
-        <svg
+        <img
           class="sp-logo"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 400 400"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <defs>
-            <clipPath id="sp-tl">
-              <rect x="0" y="0" width="207" height="207" />
-            </clipPath>
-            <clipPath id="sp-br">
-              <rect x="203" y="203" width="207" height="207" />
-            </clipPath>
-          </defs>
-
-          <!-- Red teardrop: clipped circle + white pointer tail -->
-          <g clip-path="url(#sp-tl)">
-            <circle class="sp-fill sp-f1" cx="135" cy="135" r="75" fill="__BRAND_PRIMARY__" />
-            <circle class="sp-draw sp-d1" cx="135" cy="135" r="75" pathLength="1"
-                    fill="none" stroke="__BRAND_PRIMARY__" stroke-width="3" />
-          </g>
-          <polygon class="sp-fill sp-f1" points="205,205 260,202.9 202.9,253" fill="#FFFFFF" />
-          <polygon class="sp-draw sp-d2" points="205,205 260,202.9 202.9,253" pathLength="1"
-                   fill="none" stroke="#FFFFFF" stroke-width="3" />
-
-          <!-- White teardrop: clipped circle + red pointer tail -->
-          <g clip-path="url(#sp-br)">
-            <circle class="sp-fill sp-f2" cx="275" cy="275" r="75" fill="#FFFFFF" />
-            <circle class="sp-draw sp-d2" cx="275" cy="275" r="75" pathLength="1"
-                    fill="none" stroke="#FFFFFF" stroke-width="3" />
-          </g>
-          <polygon class="sp-fill sp-f2" points="205,205 150,207.1 207.1,150" fill="__BRAND_PRIMARY__" />
-          <polygon class="sp-draw sp-d1" points="205,205 150,207.1 207.1,150" pathLength="1"
-                   fill="none" stroke="__BRAND_PRIMARY__" stroke-width="3" />
-
-          <!-- Accent circles -->
-          <circle class="sp-fill sp-f3" cx="270" cy="140" r="50" fill="#FFFFFF" />
-          <circle class="sp-draw sp-d3" cx="270" cy="140" r="50" pathLength="1"
-                  fill="none" stroke="#FFFFFF" stroke-width="3" />
-          <circle class="sp-fill sp-f4" cx="140" cy="270" r="50" fill="__BRAND_PRIMARY__" />
-          <circle class="sp-draw sp-d4" cx="140" cy="270" r="50" pathLength="1"
-                  fill="none" stroke="__BRAND_PRIMARY__" stroke-width="3" />
-        </svg>
-
-        <p class="sp-name">__BRAND_NAME_UPPER__</p>
+          src="/images/logo.png"
+          width="1636"
+          height="816"
+          alt=""
+          fetchpriority="high"
+        />
         <p class="sp-tagline">__BRAND_TAGLINE__</p>
 
         <div class="sp-dots" aria-hidden="true">
@@ -472,8 +320,8 @@
       Splash dismiss logic.
       The splash stays until React fires window.dispatchEvent(new Event('app-ready')).
 
-      MIN_MS is 1 000 ms everywhere: exactly one pass of the logo draw-on, so the
-      splash never disappears mid-stroke. It used to be 2 000 ms in standalone and
+      MIN_MS is 1 000 ms everywhere: long enough for the logo and tagline to
+      finish animating in, so the splash never disappears mid-entrance. It used to be 2 000 ms in standalone and
       1 000 ms in a browser tab - a floor the app was held behind even when React
       was ready in 200 ms. The PWA now launches a full second sooner, and nothing
       else waits on a fixed timer.

@@ -40,7 +40,7 @@ export const BRAND = {
   },
   /** Assets (paths under /public). Replace the files, not the code. */
   assets: {
-    logo: "/images/logo.svg",
+    logo: "/images/logo.png",
     logoFull: "/images/logo-full.png",
     ogImage: `${siteUrl}/images/logo-full.png`,
   },

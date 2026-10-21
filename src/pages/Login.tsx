@@ -53,7 +53,7 @@ const Login: React.FC<LoginProps> = ({ isFromReferral = false }) => {
         <img
           src={Logo}
           alt={`${BRAND.name} Logo`}
-          className="w-[75px] h-[75px] mb-8"
+          className="w-[200px] h-auto mb-8"
         />
 
         {/* Heading */}
