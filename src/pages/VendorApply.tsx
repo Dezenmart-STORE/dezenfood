@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Container from "../components/common/Container";
 import {
   useApplyAsVendorMutation,
-  useGetBanksQuery,
   useGetMyVendorQuery,
   useGetNigerianStatesQuery,
   useGetStateLgasQuery,
@@ -15,6 +14,42 @@ import { FALLBACK_STATES } from "../components/account/address/constants";
 import { getErrorMessage } from "../utils/errors";
 import { useSEO } from "../hooks/useSEO";
 import { BRAND } from "../config/brand";
+import type { Bank } from "../store/api/vendorsApi";
+
+// TEMP: the backend's bank account-name lookup isn't live yet. Flip back to
+// true once /vendors/banks/resolve is working again.
+const VERIFY_ACCOUNT_NAME = false;
+
+// TEMP: GET /vendors/banks isn't available yet, so offer common Nigerian banks
+// for testing. Swap back to useGetBanksQuery() once the backend serves the list.
+const COMMON_BANKS: Bank[] = [
+  { code: "044", name: "Access Bank" },
+  { code: "023", name: "Citibank Nigeria" },
+  { code: "050", name: "Ecobank Nigeria" },
+  { code: "070", name: "Fidelity Bank" },
+  { code: "011", name: "First Bank of Nigeria" },
+  { code: "214", name: "First City Monument Bank (FCMB)" },
+  { code: "00103", name: "Globus Bank" },
+  { code: "058", name: "Guaranty Trust Bank (GTBank)" },
+  { code: "301", name: "Jaiz Bank" },
+  { code: "082", name: "Keystone Bank" },
+  { code: "50211", name: "Kuda Bank" },
+  { code: "50515", name: "Moniepoint MFB" },
+  { code: "999992", name: "OPay" },
+  { code: "999991", name: "PalmPay" },
+  { code: "076", name: "Polaris Bank" },
+  { code: "101", name: "Providus Bank" },
+  { code: "221", name: "Stanbic IBTC Bank" },
+  { code: "068", name: "Standard Chartered Bank" },
+  { code: "232", name: "Sterling Bank" },
+  { code: "100", name: "SunTrust Bank" },
+  { code: "102", name: "Titan Trust Bank" },
+  { code: "032", name: "Union Bank of Nigeria" },
+  { code: "033", name: "United Bank for Africa (UBA)" },
+  { code: "215", name: "Unity Bank" },
+  { code: "035", name: "Wema Bank" },
+  { code: "057", name: "Zenith Bank" },
+];
 
 const input =
   "w-full rounded-xl bg-[#3A3C41] px-3 py-3 text-sm text-white placeholder-gray-600 outline-none focus:ring-2 focus:ring-brand";
@@ -38,7 +73,7 @@ export default function VendorApply() {
   const navigate = useNavigate();
   const { data: existing } = useGetMyVendorQuery();
   const [apply, { isLoading }] = useApplyAsVendorMutation();
-  const { data: banks = [] } = useGetBanksQuery();
+  const banks = COMMON_BANKS;
   const [resolve, { isLoading: resolving }] = useResolveBankAccountMutation();
   const { data: fetchedStates = [] } = useGetNigerianStatesQuery();
   const states = fetchedStates.length ? fetchedStates : FALLBACK_STATES;
@@ -71,7 +106,7 @@ export default function VendorApply() {
   // Look the account name up as soon as bank + 10-digit number are complete.
   useEffect(() => {
     setAccountName(null);
-    if (f.bankCode && /^\d{10}$/.test(f.accountNumber)) {
+    if (VERIFY_ACCOUNT_NAME && f.bankCode && /^\d{10}$/.test(f.accountNumber)) {
       resolve({ bankCode: f.bankCode, accountNumber: f.accountNumber })
         .unwrap()
         .then((r) => setAccountName(r.accountName))
@@ -95,7 +130,7 @@ export default function VendorApply() {
     if (f.address.trim().length < 8) e.address = "Enter your kitchen / store address";
     if (!f.bankCode) e.bankCode = "Select your bank";
     if (!/^\d{10}$/.test(f.accountNumber)) e.accountNumber = "Account number must be 10 digits";
-    else if (!accountName) e.accountNumber = e.accountNumber || "Wait for the account name to appear, or check the details";
+    else if (VERIFY_ACCOUNT_NAME && !accountName) e.accountNumber = e.accountNumber || "Wait for the account name to appear, or check the details";
     if (!agreed) e.agreed = "Please accept the vendor terms";
     setErrors(e);
     return Object.keys(e).length === 0;
